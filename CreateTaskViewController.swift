@@ -27,9 +27,13 @@ class CreateTaskViewController: UIViewController {
     
     @IBAction func addButton(_ sender: Any) {
         // Create a task from outlet information
-        let task = Task(name: taskNameTextField.text!, important: importantSwitch.isOn)
-        previousVC.tasks.append(task)
-        previousVC.tableView.reloadData()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let task = Task(context: context)
+        task.name = taskNameTextField.text
+        task.important = importantSwitch.isOn
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        //pop back
         navigationController!.popViewController(animated: true)
         
     }

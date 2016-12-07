@@ -12,14 +12,17 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     var tasks : [Task] = []
-    var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        tasks = makeTasks()
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getTasks()
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,30 +38,28 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = UITableViewCell()
         let task = tasks[indexPath.row]
         if (task.important == true) {
-            cell.textLabel?.text = "⭐️\(task.name)"
+            cell.textLabel?.text = "⭐️\(task.name!)"
         } else {
-            cell.textLabel?.text = task.name
+            cell.textLabel?.text = task.name!
         }
         
         return cell
     }
     
-    func makeTasks() -> [Task] {
-        let task1 = Task(name: "Do dishes", important: false)
-        let task2 = Task(name: "Pick up Regine", important: true)
-        let task3 = Task(name: "Study", important: false)
-        return [task1,task2,task3]
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addSegue" {
-            let nextVC = segue.destination as! CreateTaskViewController
-            nextVC.previousVC = self
-        }
         if segue.identifier == "selectSegue" {
             let nextVC = segue.destination as! CompleteTaskViewController
-            nextVC.task = sender as! Task
-            nextVC.previousVC = self
+            nextVC.task = sender as? Task
+        }
+    }
+    
+    func getTasks() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        do {
+            tasks = try context.fetch(Task.fetchRequest()) as! [Task]
+        } catch {
+            print("ERROR")
         }
     }
     
@@ -69,7 +70,6 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let task = tasks[indexPath.row]
         // obtain the index of the selected path for removal later when task is complete
-        selectedIndex = indexPath.row
         performSegue(withIdentifier: "selectSegue", sender: task)
     }
     
