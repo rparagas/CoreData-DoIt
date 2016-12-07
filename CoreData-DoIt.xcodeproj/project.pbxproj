@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A6D136021DF78B6800E63686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D136011DF78B6800E63686 /* AppDelegate.swift */; };
-		A6D136041DF78B6800E63686 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D136031DF78B6800E63686 /* ViewController.swift */; };
+		A6D136041DF78B6800E63686 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D136031DF78B6800E63686 /* RootViewController.swift */; };
 		A6D136071DF78B6800E63686 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6D136051DF78B6800E63686 /* Main.storyboard */; };
 		A6D1360A1DF78B6800E63686 /* CoreData_DoIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6D136081DF78B6800E63686 /* CoreData_DoIt.xcdatamodeld */; };
 		A6D1360C1DF78B6800E63686 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6D1360B1DF78B6800E63686 /* Assets.xcassets */; };
@@ -20,14 +20,14 @@
 /* Begin PBXFileReference section */
 		A6D135FE1DF78B6800E63686 /* CoreData-DoIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreData-DoIt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D136011DF78B6800E63686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A6D136031DF78B6800E63686 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A6D136031DF78B6800E63686 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A6D136061DF78B6800E63686 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6D136091DF78B6800E63686 /* CoreData_DoIt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData_DoIt.xcdatamodel; sourceTree = "<group>"; };
 		A6D1360B1DF78B6800E63686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6D1360E1DF78B6800E63686 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6D136101DF78B6800E63686 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6D136161DF791C200E63686 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = ../Task.swift; sourceTree = "<group>"; };
-		A6D136181DF79EF900E63686 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
+		A6D136181DF79EF900E63686 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateTaskViewController.swift; path = ../CreateTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +44,6 @@
 		A6D135F51DF78B6800E63686 = {
 			isa = PBXGroup;
 			children = (
-				A6D136181DF79EF900E63686 /* CreateTaskViewController.swift */,
 				A6D136001DF78B6800E63686 /* CoreData-DoIt */,
 				A6D135FF1DF78B6800E63686 /* Products */,
 			);
@@ -62,7 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				A6D136011DF78B6800E63686 /* AppDelegate.swift */,
-				A6D136031DF78B6800E63686 /* ViewController.swift */,
+				A6D136181DF79EF900E63686 /* CreateTaskViewController.swift */,
+				A6D136031DF78B6800E63686 /* RootViewController.swift */,
 				A6D136161DF791C200E63686 /* Task.swift */,
 				A6D136051DF78B6800E63686 /* Main.storyboard */,
 				A6D1360B1DF78B6800E63686 /* Assets.xcassets */,
@@ -148,7 +148,7 @@
 			files = (
 				A6D136171DF791C200E63686 /* Task.swift in Sources */,
 				A6D1360A1DF78B6800E63686 /* CoreData_DoIt.xcdatamodeld in Sources */,
-				A6D136041DF78B6800E63686 /* ViewController.swift in Sources */,
+				A6D136041DF78B6800E63686 /* RootViewController.swift in Sources */,
 				A6D136021DF78B6800E63686 /* AppDelegate.swift in Sources */,
 				A6D136191DF79EF900E63686 /* CreateTaskViewController.swift in Sources */,
 			);

@@ -11,7 +11,9 @@ import UIKit
 class CreateTaskViewController: UIViewController {
     @IBOutlet weak var taskNameTextField: UITextField!
     @IBOutlet weak var importantSwitch: UISwitch!
-
+    
+    var previousVC = RootViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,17 +26,11 @@ class CreateTaskViewController: UIViewController {
     }
     
     @IBAction func addButton(_ sender: Any) {
-        
+        // Create a task from outlet information
+        let task = Task(name: taskNameTextField.text!, important: importantSwitch.isOn)
+        previousVC.tasks.append(task)
+        previousVC.tableView.reloadData()
+        navigationController?.popViewController(animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
