@@ -9,9 +9,10 @@
 import UIKit
 
 class RootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     var tasks : [Task] = []
+    var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.dataSource = self
         tableView.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,14 +49,28 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let task3 = Task(name: "Study", important: false)
         return [task1,task2,task3]
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addSegue" {
+            let nextVC = segue.destination as! CreateTaskViewController
+            nextVC.previousVC = self
+        }
+        if segue.identifier == "selectSegue" {
+            let nextVC = segue.destination as! CompleteTaskViewController
+            nextVC.task = sender as! Task
+            nextVC.previousVC = self
+        }
+    }
+    
     @IBAction func plusTapped(_ sender: Any) {
         performSegue(withIdentifier: "addSegue", sender: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextVC = segue.destination as! CreateTaskViewController
-        nextVC.previousVC = self
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
+        // obtain the index of the selected path for removal later when task is complete
+        selectedIndex = indexPath.row
+        performSegue(withIdentifier: "selectSegue", sender: task)
     }
     
 }

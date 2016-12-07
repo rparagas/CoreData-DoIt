@@ -1,5 +1,5 @@
 //
-//  CreateTaskViewController.swift
+//  CompleteTaskViewController.swift
 //  CoreData-DoIt
 //
 //  Created by Ray Paragas on 7/12/16.
@@ -8,15 +8,22 @@
 
 import UIKit
 
-class CreateTaskViewController: UIViewController {
-    @IBOutlet weak var taskNameTextField: UITextField!
-    @IBOutlet weak var importantSwitch: UISwitch!
-    
+class CompleteTaskViewController: UIViewController {
+
+    var task = Task(name: "", important: false)
     var previousVC = RootViewController()
+    
+    @IBOutlet weak var taskLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if task.important == true {
+            taskLabel.text? = "⭐️\(task.name)"
+        } else {
+            taskLabel.text? = task.name
+        }
+        
         // Do any additional setup after loading the view.
     }
 
@@ -25,13 +32,11 @@ class CreateTaskViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func addButton(_ sender: Any) {
-        // Create a task from outlet information
-        let task = Task(name: taskNameTextField.text!, important: importantSwitch.isOn)
-        previousVC.tasks.append(task)
+    @IBAction func completeTapped(_ sender: Any) {
+        // Complete a task from outlet information
+        previousVC.tasks.remove(at: previousVC.selectedIndex)
         previousVC.tableView.reloadData()
         navigationController!.popViewController(animated: true)
-        
     }
 
 }
